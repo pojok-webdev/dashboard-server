@@ -19,10 +19,63 @@ ticketdaily = function(){
     sql+= "select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)=date(now()) and a.clientcategory = '5' ";
     return sql;
 }
+ticketweekly = function(){
+    sql = "select 'FFR' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id  where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day)  and a.clientcategory = '1' ";
+    sql+="union ";
+    sql+="select 'PLATINUM' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id  where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day)  and a.clientcategory = '2'  ";
+    sql+="union ";
+    sql+="select 'GOLD' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id  where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day)  and a.clientcategory = '3'  ";
+    sql+="union ";
+    sql+="select 'BRONZE' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id  where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day)  and a.clientcategory = '4'  ";
+    sql+="union ";
+    sql+="select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id  where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day)  and a.clientcategory = '5'  ";
+return sql;
+}
+ticketmonthly = function(){
+    sql = "select 'FFR' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '5'  ";
+    return sql;
+}
+ticketquarterly = function(){
+    sql = "select 'FFR' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day)  and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day)  and a.clientcategory = '2' ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day)  and a.clientcategory = '3' ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day)  and a.clientcategory = '4' ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day)  and a.clientcategory = '5' ";
+    return sql;
+}
+ticketyearly = function(){
+    sql= "select 'FFR' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '5'  ";
+    return sql;
+}
+
 module.exports = {
     visits: getdailyvisits(),
     offers: 'select username name,id val from users where group_id=3 limit 1,4',
     newfbs: 'select username name,id val from users where group_id=3 limit 1,4',
     sellings: 'select username name,id val from users where group_id=3 limit 1,4',
-    ticketdaily: ticketdaily()
+    ticketdaily: ticketdaily(),
+    ticketweekly: ticketweekly(),
+    ticketmonthly: ticketmonthly(),
+    ticketquarterly: ticketquarterly(),
+    ticketyearly: ticketyearly()
 }
