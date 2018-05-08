@@ -17,7 +17,14 @@ app.locals.dtformat = "dd M YY";
 app.use(bodyParser.urlencoded({
 	extended:true
 }));
-
+app.get('/bts',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	btsquery = queries.bts;
+	con.salesdata(btsquery,function(out){
+		console.log("BTS",out);
+		res.send(out);
+	});
+});
 app.get('/visits',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
 	salesquery = queries.visits;
@@ -91,19 +98,45 @@ app.get('/ticketyearly',function(req,res){
 		res.send(out);
 	});
 });
-app.get('/ticketyearly',function(req,res){
+
+
+app.get('/surveydaily',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	ticketquery = queries.ticketyearly;
-	con.salesdata(ticketquery,function(out){
-		console.log("Ticket yearly",out);
+	surveyquery = queries.surveydaily;
+	con.salesdata(surveyquery,function(out){
+		console.log("survey daily",out);
 		res.send(out);
 	});
 });
-app.get('/bts',function(req,res){
+app.get('/surveyweekly',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	btsquery = queries.bts;
-	con.salesdata(btsquery,function(out){
-		console.log("BTS",out);
+	surveyquery = queries.surveyweekly;
+	con.salesdata(surveyquery,function(out){
+		console.log("survey weekly",out);
+		res.send(out);
+	});
+});
+app.get('/surveymonthly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	surveyquery = queries.surveymonthly;
+	con.salesdata(surveyquery,function(out){
+		console.log("survey monthly",out);
+		res.send(out);
+	});
+});
+app.get('/surveyquarterly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	surveyquery = queries.surveyquarterly;
+	con.salesdata(surveyquery,function(out){
+		console.log("survey quarterly",out);
+		res.send(out);
+	});
+});
+app.get('/surveyyearly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	surveyquery = queries.surveyyearly;
+	con.salesdata(surveyquery,function(out){
+		console.log("survey yearly",out);
 		res.send(out);
 	});
 });

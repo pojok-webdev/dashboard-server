@@ -74,7 +74,66 @@ bts = function(){
     sql+= "left outer join aps c on c.btstower_id=a.id  group by a.id,a.name,a.location,b.name";
     return sql;
 }
-
+surveydaily = function(){
+    sql = "select 'FFR' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)=date(now())  and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)=date(now())  and a.clientcategory = '2' ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)=date(now())  and a.clientcategory = '3' ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)=date(now())  and a.clientcategory = '4' ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)=date(now())  and a.clientcategory = '5' ";
+return sql;
+}
+surveyweekly = function(){
+    sql = "select 'FFR' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '5'  ";
+return sql;
+}
+surveymonthly = function(){
+    sql = "select 'FFR' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '1'  ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '2' "; 
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '5' ";
+return sql;
+}
+surveyquarterly = function(){
+    sql = "select 'FFR' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '5'  ";
+return sql;
+}
+function surveyyearly(){
+    sql = " select 'FFR' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '1' ";
+    sql+= " union ";
+    sql+= " select 'PLATINUM' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= " union ";
+    sql+= " select 'GOLD' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= " union ";
+    sql+= " select 'BRONZE' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= " union ";
+    sql+= " select 'SILVER' name,count(b.id)val from clients a left outer join survey_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '5'  ";
+return sql;
+}
 module.exports = {
     visits: getdailyvisits(),
     offers: 'select username name,id val from users where group_id=3 limit 1,4',
@@ -85,5 +144,10 @@ module.exports = {
     ticketmonthly: ticketmonthly(),
     ticketquarterly: ticketquarterly(),
     ticketyearly: ticketyearly(),
-    bts:bts()
+    bts:bts(),
+    surveydaily: surveydaily(),
+    surveyweekly: surveyweekly(),
+    surveymonthly: surveymonthly(),
+    surveyquarterly: surveyquarterly(),
+    surveyyearly: surveyyearly()
 }
