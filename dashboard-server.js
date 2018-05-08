@@ -51,6 +51,14 @@ app.get('/sellings',function(req,res){
 		res.send(out);
 	});
 });
+app.get('/ticketdaily',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	ticketquery = queries.ticketdaily;
+	con.salesdata(ticketquery,function(out){
+		console.log("Ticket daily",out);
+		res.send(out);
+	});
+});
 app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
