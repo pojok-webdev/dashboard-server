@@ -67,6 +67,13 @@ ticketyearly = function(){
     sql+= "select 'SILVER' name,count(b.kdticket)val from clients a left outer join tickets b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '5'  ";
     return sql;
 }
+bts = function(){
+    sql = "select a.id,a.name bts,a.location,b.name branch,count(c.name)apcount  ";
+    sql+= "from btstowers a ";
+    sql+= "left outer join branches b on b.id=a.branch_id  ";
+    sql+= "left outer join aps c on c.btstower_id=a.id  group by a.id,a.name,a.location,b.name";
+    return sql;
+}
 
 module.exports = {
     visits: getdailyvisits(),
@@ -77,5 +84,6 @@ module.exports = {
     ticketweekly: ticketweekly(),
     ticketmonthly: ticketmonthly(),
     ticketquarterly: ticketquarterly(),
-    ticketyearly: ticketyearly()
+    ticketyearly: ticketyearly(),
+    bts:bts()
 }

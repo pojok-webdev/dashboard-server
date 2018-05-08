@@ -91,6 +91,22 @@ app.get('/ticketyearly',function(req,res){
 		res.send(out);
 	});
 });
+app.get('/ticketyearly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	ticketquery = queries.ticketyearly;
+	con.salesdata(ticketquery,function(out){
+		console.log("Ticket yearly",out);
+		res.send(out);
+	});
+});
+app.get('/bts',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	btsquery = queries.bts;
+	con.salesdata(btsquery,function(out){
+		console.log("BTS",out);
+		res.send(out);
+	});
+});
 app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
