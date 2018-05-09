@@ -140,6 +140,52 @@ app.get('/surveyyearly',function(req,res){
 		res.send(out);
 	});
 });
+
+
+
+
+
+app.get('/installdaily',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	installquery = queries.installdaily;
+	con.salesdata(installquery,function(out){
+		console.log("install daily",out);
+		res.send(out);
+	});
+});
+app.get('/installweekly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	installquery = queries.installweekly;
+	con.salesdata(installquery,function(out){
+		console.log("install weekly",out);
+		res.send(out);
+	});
+});
+app.get('/installmonthly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	installquery = queries.installmonthly;
+	con.salesdata(installquery,function(out){
+		console.log("install monthly",out);
+		res.send(out);
+	});
+});
+app.get('/installquarterly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	installquery = queries.installquarterly;
+	con.salesdata(installquery,function(out){
+		console.log("install quarterly",out);
+		res.send(out);
+	});
+});
+app.get('/installyearly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	installquery = queries.installyearly;
+	con.salesdata(installquery,function(out){
+		console.log("install yearly",out);
+		res.send(out);
+	});
+});
+
 app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
