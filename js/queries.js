@@ -194,6 +194,66 @@ function installyearly(){
     sql+= "select 'SILVER' name,count(b.id)val from clients a left outer join install_requests b on b.client_id=a.id where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '5'  ";
 return sql;
 }
+function troubleshootdaily(){
+    sql = "select 'FFR' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)=date(now()) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)=date(now()) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)=date(now()) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)=date(now()) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)=date(now()) and a.clientcategory = '5'  ";
+return sql;
+}
+troubleshootweekly = function(){
+    sql = "select 'FFR' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and a.clientcategory = '5' ";
+return sql;
+}
+troubleshootmonthly = function(){
+    sql = "select 'FFR' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '2' ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '3' ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '4' ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '5' ";
+return sql;
+}
+function troubleshootquarterly(){
+    sql = "select 'FFR' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '2 ' ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '3' ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '4' ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and a.clientcategory = '5' ";
+return sql;
+}
+function troubleshootyearly(){
+    sql = "select 'FFR' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '1' ";
+    sql+= "union ";
+    sql+= "select 'PLATINUM' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '2'  ";
+    sql+= "union ";
+    sql+= "select 'GOLD' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '3'  ";
+    sql+= "union ";
+    sql+= "select 'BRONZE' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '4'  ";
+    sql+= "union ";
+    sql+= "select 'SILVER' name,count(c.id)val from clients a left outer join client_sites b on b.client_id=a.id left outer join troubleshoot_requests c on c.client_site_id=b.id where date(c.create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and a.clientcategory = '5'  ";
+return sql;
+}
 module.exports = {
     visits: getdailyvisits(),
     offers: 'select username name,id val from users where group_id=3 limit 1,4',
@@ -214,5 +274,10 @@ module.exports = {
     installweekly: installweekly(),
     installmonthly: installmonthly(),
     installquarterly: installquarterly(),
-    installyearly: installyearly()
+    installyearly: installyearly(),
+    troubleshootdaily: troubleshootdaily(),
+    troubleshootweekly: troubleshootweekly(),
+    troubleshootmonthly: troubleshootmonthly(),
+    troubleshootquarterly: troubleshootquarterly(),
+    troubleshootyearly: troubleshootyearly()
 }

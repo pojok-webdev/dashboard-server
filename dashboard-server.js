@@ -186,6 +186,49 @@ app.get('/installyearly',function(req,res){
 	});
 });
 
+
+
+app.get('/troubleshootdaily',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	troubleshootquery = queries.troubleshootdaily;
+	con.salesdata(troubleshootquery,function(out){
+		console.log("troubleshoot daily",out);
+		res.send(out);
+	});
+});
+app.get('/troubleshootweekly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	troubleshootquery = queries.troubleshootweekly;
+	con.salesdata(troubleshootquery,function(out){
+		console.log("troubleshoot weekly",out);
+		res.send(out);
+	});
+});
+app.get('/troubleshootmonthly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	troubleshootquery = queries.troubleshootmonthly;
+	con.salesdata(troubleshootquery,function(out){
+		console.log("troubleshoot monthly",out);
+		res.send(out);
+	});
+});
+app.get('/troubleshootquarterly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	troubleshootquery = queries.troubleshootquarterly;
+	con.salesdata(troubleshootquery,function(out){
+		console.log("troubleshoot quarterly",out);
+		res.send(out);
+	});
+});
+app.get('/troubleshootyearly',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	troubleshootquery = queries.troubleshootyearly;
+	con.salesdata(troubleshootquery,function(out){
+		console.log("troubleshoot yearly",out);
+		res.send(out);
+	});
+});
+
 app.all('/*', function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
