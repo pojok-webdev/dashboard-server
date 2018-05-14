@@ -3,8 +3,10 @@ getdailyvisits = function(){
     sql+= "left outer join visits b on b.sale_id=a.id ";
     //sql+= "where date(b.createdate)='2018-1-1' ";
     //sql+= "and a.id="+sale_id+" ";
-    sql+= "group by a.username ";
-    sql+= "limit 1,10 ";
+    sql = "select telegram_id,clientname,address,createuser,createdate ";
+    sql = "select createuser,count(createuser)cnt ";
+    sql+= "from visits ";
+    sql+= "group by createuser ";
     return sql;
 }
 ticketdaily = function(){
