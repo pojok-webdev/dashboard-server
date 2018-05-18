@@ -142,7 +142,7 @@ app.get('/surveyyearly',function(req,res){
 });
 app.get('/detailsurveydaily:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveydaily = queries.detailsurveydaily(req.params.id);
+	detailsurveydaily = queries.detailsurveydaily(req.params.category);
 	console.log("Query",detailsurveydaily);
 	con.salesdata(detailsurveydaily,function(out){
 		console.log("detail survey daily",out);
@@ -151,7 +151,7 @@ app.get('/detailsurveydaily:category',function(req,res){
 });
 app.get('/detailsurveyweekly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyweekly = queries.detailsurveyweekly(req.params.id);
+	detailsurveyweekly = queries.detailsurveyweekly(req.params.category);
 	console.log("Query",detailsurveyweekly);
 	con.salesdata(detailsurveyweekly,function(out){
 		console.log("detail survey weekly",out);
@@ -160,7 +160,7 @@ app.get('/detailsurveyweekly:category',function(req,res){
 });
 app.get('/detailsurveymonthly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveymonthly = queries.detailsurveymonthly(req.params.id);
+	detailsurveymonthly = queries.detailsurveymonthly(req.params.category);
 	console.log("Query",detailsurveymonthly);
 	con.salesdata(detailsurveymonthly,function(out){
 		console.log("detail survey monthly",out);
@@ -169,7 +169,7 @@ app.get('/detailsurveymonthly:category',function(req,res){
 });
 app.get('/detailsurveyquarterly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyquarterly = queries.detailsurveyquarterly(req.params.id);
+	detailsurveyquarterly = queries.detailsurveyquarterly(req.params.category);
 	console.log("Query",detailsurveyquarterly);
 	con.salesdata(detailsurveyquarterly,function(out){
 		console.log("detail survey quarterly",out);
@@ -178,7 +178,7 @@ app.get('/detailsurveyquarterly:category',function(req,res){
 });
 app.get('/detailsurveyyearly/:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyyearly = queries.detailsurveyyearly(req.params.id);
+	detailsurveyyearly = queries.detailsurveyyearly(req.params.category);
 	console.log("Req",req);
 	console.log("Query",detailsurveyyearly);
 	con.salesdata(detailsurveyyearly,function(out){
