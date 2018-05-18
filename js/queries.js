@@ -137,35 +137,35 @@ function surveyyearly(){
 return sql;
 }
 function detailsurveydaily(category){
-    sql = "select a.address,a.createuser,a.survey_date,a.create_date,b.name ";
+    sql = "select a.address,a.createuser sales,a.survey_date,a.create_date,b.name client ";
     sql+= "from survey_requests a ";
     sql+= "left outer join clients b on b.id=a.client_id ";
     sql+= "where date(create_date)=date(now())  and b.clientcategory = '"+category+"' ";
     return sql;
 }
 function detailsurveyweekly(category){
-    sql = "select a.address,a.createuser,a.survey_date,a.create_date,b.name ";
+    sql = "select a.address,a.createuser sales,a.survey_date,a.create_date,b.name client ";
     sql+= "from survey_requests a ";
     sql+= "left outer join clients b on b.id=a.client_id ";
     sql+= " where date(create_date)>=date_sub(date(now()),interval dayofweek(date(now())) day) and b.clientcategory = '"+category+"'  ";
     return sql;
 }
 function detailsurveymonthly(category){
-    sql = "select a.address,a.createuser,a.survey_date,a.create_date,b.name ";
+    sql = "select a.address,a.createuser sales,a.survey_date,a.create_date,b.name client ";
     sql+= "from survey_requests a ";
     sql+= "left outer join clients b on b.id=a.client_id ";
     sql+= " where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and b.clientcategory = '"+category+"' ";
     return sql;
 }
 function detailsurveyquarterly(category){
-    sql = "select a.address,a.createuser,a.survey_date,a.create_date,b.name ";
+    sql = "select a.address,a.createuser sales,a.survey_date,a.create_date,b.name client ";
     sql+= "from survey_requests a ";
     sql+= "left outer join clients b on b.id=a.client_id ";
     sql+= "where date(create_date)>=date_sub(date(now()),interval dayofmonth(date(now())) day) and b.clientcategory = '"+category+"' ";
     return sql;
 }
 function detailsurveyyearly(category){
-    sql = "select a.address,a.createuser,a.survey_date,a.create_date,b.name ";
+    sql = "select a.address,a.createuser sales,a.survey_date,a.create_date,b.name client ";
     sql+= "from survey_requests a ";
     sql+= "left outer join clients b on b.id=a.client_id ";
     sql+= "where date(create_date)>=date_sub(date(now()),interval dayofyear(date(now())) day) and b.clientcategory = '"+category+"' ";
