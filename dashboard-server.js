@@ -140,45 +140,46 @@ app.get('/surveyyearly',function(req,res){
 		res.send(out);
 	});
 });
-app.get('/detailsurveydaily',function(req,res){
+app.get('/detailsurveydaily:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveydaily = queries.detailsurveydaily(1);
+	detailsurveydaily = queries.detailsurveydaily(req.params.id);
 	console.log("Query",detailsurveydaily);
 	con.salesdata(detailsurveydaily,function(out){
 		console.log("detail survey daily",out);
 		res.send(out);
 	});
 });
-app.get('/detailsurveyweekly',function(req,res){
+app.get('/detailsurveyweekly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyweekly = queries.detailsurveyweekly(1);
+	detailsurveyweekly = queries.detailsurveyweekly(req.params.id);
 	console.log("Query",detailsurveyweekly);
 	con.salesdata(detailsurveyweekly,function(out){
 		console.log("detail survey weekly",out);
 		res.send(out);
 	});
 });
-app.get('/detailsurveymonthly',function(req,res){
+app.get('/detailsurveymonthly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveymonthly = queries.detailsurveymonthly(1);
+	detailsurveymonthly = queries.detailsurveymonthly(req.params.id);
 	console.log("Query",detailsurveymonthly);
 	con.salesdata(detailsurveymonthly,function(out){
 		console.log("detail survey monthly",out);
 		res.send(out);
 	});
 });
-app.get('/detailsurveyquarterly',function(req,res){
+app.get('/detailsurveyquarterly:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyquarterly = queries.detailsurveyquarterly(1);
+	detailsurveyquarterly = queries.detailsurveyquarterly(req.params.id);
 	console.log("Query",detailsurveyquarterly);
 	con.salesdata(detailsurveyquarterly,function(out){
 		console.log("detail survey quarterly",out);
 		res.send(out);
 	});
 });
-app.get('/detailsurveyyearly',function(req,res){
+app.get('/detailsurveyyearly/:category',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*");
-	detailsurveyyearly = queries.detailsurveyyearly(1);
+	detailsurveyyearly = queries.detailsurveyyearly(req.params.id);
+	console.log("Req",req);
 	console.log("Query",detailsurveyyearly);
 	con.salesdata(detailsurveyyearly,function(out){
 		console.log("detail survey yearly",out);
